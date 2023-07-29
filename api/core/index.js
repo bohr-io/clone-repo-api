@@ -6,7 +6,11 @@ const api = lambda({
 });
 
 api.get('/', async (req, res) => {
-  return { status: 'ok' };
+  return { status: 'ok get' };
+});
+
+api.post('/', async (req, res) => {
+  return { status: 'ok POST' };
 });
 
 api.post('/clone', async (req, res) => {

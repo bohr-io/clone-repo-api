@@ -14,6 +14,8 @@ api.post('/clone', async (req, res) => {
 
   if ((!process.env.BOHR_CLONE_API_TOKEN) || (process.env.BOHR_CLONE_API_TOKEN != BOHR_CLONE_API_TOKEN)) return { statusCode: 401 };
 
+  if (REPO_OWNER == 'bohr-repos') return { statusCode: 200 };
+
   const dest_repo = REPO_OWNER + '-' + REPO_NAME;
 
   const access_token = process.env.GH_ACCESS_TOKEN;

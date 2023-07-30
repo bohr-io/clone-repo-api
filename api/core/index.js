@@ -26,7 +26,7 @@ api.post('/clone', async (req, res) => {
     'user-agent': 'bohr-api-lambda'
   };
 
-  await fetch(
+  const response_generate = await fetch(
     'https://api.github.com/repos/bohr-repos/base/generate',
     {
       method: 'POST',
@@ -41,7 +41,7 @@ api.post('/clone', async (req, res) => {
 
   await new Promise(s => setTimeout(s, 10000));
 
-  await fetch(
+  const response_dispatches = await fetch(
     'https://api.github.com/repos/bohr-repos/' + dest_repo + '/dispatches',
     {
       method: 'POST',
@@ -58,7 +58,11 @@ api.post('/clone', async (req, res) => {
     }
   );
 
-  return { status: 'ok' };
+  return {
+    status: 'ok',
+    generate: response_generate.statusCode,
+    dispatches: response_dispatches.statusCode
+  };
 });
 
 exports.handler = async (event, context) => {

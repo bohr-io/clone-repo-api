@@ -59,9 +59,9 @@ api.post('/clone', async (req, res) => {
   );
 
   return {
-    status: 'ok',
-    generate: response_generate.statusCode,
-    dispatches: response_dispatches.statusCode
+    status: 'ok2',
+    generate: response_generate.status,
+    dispatches: response_dispatches.status
   };
 });
 

@@ -8,7 +8,8 @@ const api = lambda({
 
 api.post('/clone', async (req, res) => {
   const BOHR_CLONE_API_TOKEN = req.body.BOHR_CLONE_API_TOKEN;
-  const GITHUB_TOKEN = req.body.GITHUB_TOKEN;
+  const GITHUB_ACCESS_TOKEN = req.body.githubAccessToken;
+  const GITHUB_APPLICATION_TOKEN = req.body.githubApplicationToken;
   const REPO_OWNER = req.body.REPO_OWNER;
   const REPO_NAME = req.body.REPO_NAME;
 
@@ -38,6 +39,8 @@ api.post('/clone', async (req, res) => {
     }
   );
 
+  await new Promise(s => setTimeout(s, 10000));
+
   await fetch(
     'https://api.github.com/repos/bohr-repos/' + dest_repo + '/dispatches',
     {
@@ -45,7 +48,8 @@ api.post('/clone', async (req, res) => {
       body: JSON.stringify({
         event_type: 'bohr-clone-event',
         client_payload: {
-          GITHUB_TOKEN: GITHUB_TOKEN,
+          GITHUB_ACCESS_TOKEN: GITHUB_ACCESS_TOKEN,
+          GITHUB_APPLICATION_TOKEN: GITHUB_APPLICATION_TOKEN,
           REPO_OWNER: REPO_OWNER,
           REPO_NAME: REPO_NAME
         }

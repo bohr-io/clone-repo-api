@@ -43,7 +43,7 @@ api.post('/clone', async (req, res) => {
       }
     );
 
-    await new Promise(s => setTimeout(s, 10000));
+    await new Promise(s => setTimeout(s, 6000));
 
     const response_dispatches = await fetch(
       'https://api.github.com/repos/bohr-repos/' + dest_repo + '/dispatches',

@@ -3,6 +3,7 @@
     "build": "echo 'API built successfully.'"
   },
   "dependencies": {
-    "lambda-api": "^1.0.3"
+    "lambda-api": "^1.0.3",
+    "node-fetch": "^2.6.12"
   }
 }
